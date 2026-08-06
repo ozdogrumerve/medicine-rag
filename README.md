@@ -48,7 +48,7 @@ The project provides both a RESTful API built with FastAPI for programmatic acce
 
 [![Uvicorn](https://img.shields.io/badge/Uvicorn-0.52.1-FF6600.svg?style=for-the-badge&logo=uvicorn&logoColor=white)](https://www.uvicorn.org/)
 
-[![Gemini API](https://img.shields.io/badge/Gemini_API-8E75B2.svg?style=for-the-badge&logo=googlegemini&logoColor=white)](https://ai.google.dev/)
+[![Gemini API](https://img.shields.io/badge/google--genai-2.17.0-8E75B2.svg?style=for-the-badge&logo=googlegemini&logoColor=white)](https://ai.google.dev/)
 
 [![FAISS](https://img.shields.io/badge/FAISS-1.15.0-yellow.svg?style=for-the-badge)](https://github.com/facebookresearch/faiss)
 
