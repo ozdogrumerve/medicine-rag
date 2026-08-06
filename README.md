@@ -41,17 +41,26 @@ The project provides both a RESTful API built with FastAPI for programmatic acce
 ## 🛠️ Tech Stack
 
 **Backend:**
-[![Python](https://img.shields.io/badge/Python-3.9+-3776AB.svg?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.104.1-009688.svg?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Uvicorn](https://img.shields.io/badge/Uvicorn-0.23.2-FF6600.svg?style=for-the-badge&logo=uvicorn&logoColor=white)](https://www.uvicorn.org/)
+
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB.svg?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.141.1-009688.svg?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+
+[![Uvicorn](https://img.shields.io/badge/Uvicorn-0.52.1-FF6600.svg?style=for-the-badge&logo=uvicorn&logoColor=white)](https://www.uvicorn.org/)
+
 [![Gemini API](https://img.shields.io/badge/Gemini_API-8E75B2.svg?style=for-the-badge&logo=googlegemini&logoColor=white)](https://ai.google.dev/)
-[![FAISS](https://img.shields.io/badge/FAISS-yellow.svg?style=for-the-badge)](https://github.com/facebookresearch/faiss)
-[![Sentence Transformers](https://img.shields.io/badge/Sentence--Transformers-blueviolet.svg?style=for-the-badge)](https://www.sbert.net/)
-[![PyPDF](https://img.shields.io/badge/PyPDF-orange.svg?style=for-the-badge)](https://pypdf.readthedocs.io/en/stable/)
-[![python-dotenv](https://img.shields.io/badge/python--dotenv-grey.svg?style=for-the-badge)](https://github.com/theskumar/python-dotenv)
+
+[![FAISS](https://img.shields.io/badge/FAISS-1.15.0-yellow.svg?style=for-the-badge)](https://github.com/facebookresearch/faiss)
+
+[![Sentence Transformers](https://img.shields.io/badge/Sentence--Transformers-5.7.0-blueviolet.svg?style=for-the-badge)](https://www.sbert.net/)
+
+[![PyPDF](https://img.shields.io/badge/PyPDF-6.15.0-orange.svg?style=for-the-badge)](https://pypdf.readthedocs.io/en/stable/)
+
+[![python-dotenv](https://img.shields.io/badge/python--dotenv-1.2.2-grey.svg?style=for-the-badge)](https://github.com/theskumar/python-dotenv)
 
 **Frontend (Interactive UI):**
-[![Gradio](https://img.shields.io/badge/Gradio-4.8.0-FF66CC.svg?style=for-the-badge&logo=gradio&logoColor=white)](https://www.gradio.app/)
+
+[![Gradio](https://img.shields.io/badge/Gradio-6.22.0-FF66CC.svg?style=for-the-badge&logo=gradio&logoColor=white)](https://www.gradio.app/)
 
 ## 🚀 Quick Start
 
@@ -59,7 +68,7 @@ Follow these steps to get the Medicine RAG system up and running on your local m
 
 ### Prerequisites
 
--   **Python 3.9+** (ensure it's installed and available in your PATH)
+-   **Python 3.10+** (ensure it's installed and available in your PATH)
 -   A **Google Gemini API Key** for accessing the Generative AI models.
 
 ### Installation
