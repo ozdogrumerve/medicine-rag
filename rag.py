@@ -6,6 +6,7 @@ import os
 from dotenv import load_dotenv
 from google import genai
 from typer import prompt
+import pickle
 
 load_dotenv()
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
@@ -59,6 +60,36 @@ def embedding_olustur(parcalar: list[str]):
     index.add(vektorler)
 
     return index
+
+
+def index_kaydet(index, parcalar: list[str], klasor: str = "veritabani"):
+    """
+    FAISS index'ini ve chunk listesini diske kaydeder.
+    """
+    os.makedirs(klasor, exist_ok=True)
+    faiss.write_index(index, f"{klasor}/index.faiss")
+
+    with open(f"{klasor}/parcalar.pkl", "wb") as f:
+        pickle.dump(parcalar, f)
+
+
+def index_yukle(klasor: str = "veritabani"):
+    """
+    Diskten FAISS index'ini ve chunk listesini okur.
+    Eğer dosyalar yoksa None döndürür.
+    """
+    index_yolu = f"{klasor}/index.faiss"
+    parca_yolu = f"{klasor}/parcalar.pkl"
+
+    if not os.path.exists(index_yolu) or not os.path.exists(parca_yolu):
+        return None, None
+
+    index = faiss.read_index(index_yolu)
+
+    with open(parca_yolu, "rb") as f:
+        parcalar = pickle.load(f)
+
+    return index, parcalar
 
 
 def ilgili_parcalari_bul(soru: str, index, parcalar: list[str], k: int = 5):
