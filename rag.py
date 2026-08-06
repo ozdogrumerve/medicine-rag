@@ -92,18 +92,27 @@ def index_yukle(klasor: str = "veritabani"):
     return index, parcalar
 
 
-def ilgili_parcalari_bul(soru: str, index, parcalar: list[str], k: int = 5):
+def ilgili_parcalari_bul(soru: str, index, parcalar: list[dict], k: int = 5, kaynak_filtre: str = None):
     """
     Kullanıcının sorusunu vektöre çevirir, FAISS'te
     en yakın k tane parçayı bulup döndürür.
+    kaynak_filtre verilirse, sadece o dosyaya ait sonuçlar döner.
     """
     soru_vektoru = model.encode([soru])
-    soru_vektoru = np.array(soru_vektoru).astype("float32") 
+    soru_vektoru = np.array(soru_vektoru).astype("float32")
 
-    mesafeler, indeksler = index.search(soru_vektoru, k)
+    # Filtre varsa daha fazla sonuç çekip sonra filtreleyeceğiz
+    arama_k = len(parcalar) if kaynak_filtre else k
+
+    mesafeler, indeksler = index.search(soru_vektoru, arama_k)
 
     bulunan_parcalar = [parcalar[i] for i in indeksler[0]]
-    return bulunan_parcalar
+
+    if kaynak_filtre:
+        bulunan_parcalar = [p for p in bulunan_parcalar if p["kaynak"] == kaynak_filtre]
+        bulunan_parcalar = bulunan_parcalar[:k]
+
+    return [p["metin"] for p in bulunan_parcalar]
 
 
 def cevap_uret(soru: str, ilgili_parcalar: list[str]) -> str:
@@ -134,13 +143,13 @@ CEVAP:"""
 
 # Hızlı test için main bloğu
 if __name__ == "__main__":
-    metin = pdf_oku("data/prospectus/PAROL.pdf")
-    parcalar = metni_boles(metin)
-    index = embedding_olustur(parcalar)
+    index, parcalar = index_yukle()
 
-    soru = "PAROL nedir ve ne için kullanılır?"
-    ilgili_parcalar = ilgili_parcalari_bul(soru, index, parcalar, k=5)
-    cevap = cevap_uret(soru, ilgili_parcalar)
+    soru = "NUROFEN nedir?"
+    sonuclar = ilgili_parcalari_bul(soru, index, parcalar, k=200)
 
-    print(f"Soru: {soru}\n")
-    print(f"Cevap: {cevap}")
+    for i, parca in enumerate(sonuclar):
+        if "ibuprofen" in parca.lower() and "nurofen" in parca.lower():
+            print(f"Etkin madde chunk'ı {i+1}. sırada bulundu")
+            print(parca[:300])
+            break
